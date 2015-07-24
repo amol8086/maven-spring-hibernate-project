@@ -64,8 +64,9 @@ public class EmployeeServiceBC {
 
 	public EmployeeTO updateEmployee(EmployeeTO employeeTO) {
 		Employee employee = createEmployee(employeeTO);
-		getEmployeeServiceDAC().updateEmployee(employee);
-		return employeeTO;
+		Employee updatedEmployee = getEmployeeServiceDAC().updateEmployee(employee);
+		EmployeeTO updatedEmployeeTO = createEmployeeTO(updatedEmployee);
+		return updatedEmployeeTO;
 	}
 
 

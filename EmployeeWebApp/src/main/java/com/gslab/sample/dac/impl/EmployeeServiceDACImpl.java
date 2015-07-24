@@ -4,6 +4,7 @@
 package com.gslab.sample.dac.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gslab.sample.dac.EmployeeServiceDAC;
 import com.gslab.sample.entity.Employee;
+import com.gslab.sample.entity.Meeting;
 
 /**
  * @author GS-1014
@@ -59,7 +61,14 @@ public class EmployeeServiceDACImpl implements EmployeeServiceDAC {
 	@Override
 	public Employee addEmployee(Employee newEmployee) {
 		Session session = getSessionFactory().getCurrentSession();
+		/*Set<Meeting> meetings = newEmployee.getMeetings();
+		
+		for (Meeting meeting : meetings) {
+			session.save(meeting);
+		}
+		*/
 		session.save(newEmployee);
+		
 		LOGGER.info("Added employee with id: " + newEmployee.getEmployeeId() + 
 				" employee : " + newEmployee);
 		return newEmployee;

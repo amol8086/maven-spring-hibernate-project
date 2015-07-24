@@ -39,7 +39,7 @@
 		</property>
 	</bean> -->
 
-	<bean name="handlerAdapter" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+	<!-- <bean name="handlerAdapter" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
 		<property name="messageConverters">
 			<list>
 				<bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"></bean>
@@ -55,6 +55,6 @@
 				<bean class="org.springframework.http.converter.StringHttpMessageConverter"></bean>
 			</list>
 		</property>
-	</bean>
+	</bean> -->
 
 </beans>

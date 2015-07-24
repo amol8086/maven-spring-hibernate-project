@@ -115,8 +115,8 @@ public class Employee implements Serializable {
 	 * @return the department
 	 */
 	@ManyToOne
-	@Cascade(value={CascadeType.SAVE_UPDATE})
-	@JoinColumn(name = "DEPARTMENT_ID", nullable = false)
+	@Cascade(value=org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+	@JoinColumn(name = "DEPARTMENT_ID")
 	public Department getDepartment() {
 		return department;
 	}
@@ -131,6 +131,7 @@ public class Employee implements Serializable {
 	 * @return the meetings
 	 */
 	 @ManyToMany
+	 @Cascade(value=CascadeType.SAVE_UPDATE)
 	 @JoinTable(name="EMPLOYEE_MEETING", 
      joinColumns={@JoinColumn(name="EMPLOYEE_ID")}, 
      inverseJoinColumns={@JoinColumn(name="MEETING_ID")})

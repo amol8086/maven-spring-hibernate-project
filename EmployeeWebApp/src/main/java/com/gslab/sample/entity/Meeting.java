@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 @Table(name="MEETING")
 public class Meeting implements Serializable {
@@ -86,6 +89,7 @@ public class Meeting implements Serializable {
 	 * @return the employees
 	 */
 	@ManyToMany(mappedBy = "meetings")
+	@Cascade(value=CascadeType.SAVE_UPDATE)
 	public Set<Employee> getEmployees() {
 		return employees;
 	}

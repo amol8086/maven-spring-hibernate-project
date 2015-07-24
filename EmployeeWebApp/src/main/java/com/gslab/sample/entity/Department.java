@@ -1,17 +1,19 @@
 package com.gslab.sample.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name="DEPARTMENT")
@@ -21,7 +23,7 @@ public class Department implements Serializable {
 
 	private long departmentId;
 	private String departmentName;
-	private Set<Employee> employees;
+	private Set<Employee> employees = new HashSet<>();
 	
 	/**
 	 * @return the departmentId
@@ -58,7 +60,8 @@ public class Department implements Serializable {
 	/**
 	 * @return the employees
 	 */
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "department", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "department", orphanRemoval = true)
+	@Cascade(value = {CascadeType.SAVE_UPDATE})
 	public Set<Employee> getEmployees() {
 		return employees;
 	}

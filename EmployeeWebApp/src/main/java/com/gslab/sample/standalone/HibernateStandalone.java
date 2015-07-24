@@ -1,12 +1,16 @@
 package com.gslab.sample.standalone;
 
+import java.sql.Date;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+import com.gslab.sample.entity.Department;
 import com.gslab.sample.entity.Employee;
+import com.gslab.sample.entity.Meeting;
 
 public class HibernateStandalone {
 	private SessionFactory sessionFactory;
@@ -60,19 +64,38 @@ public class HibernateStandalone {
         session.delete(department);
 */
         /*Department department = new Department();
-        department.setDepartmentName("Research");
+        department.setDepartmentId(142L);
+        department.setDepartmentName("Research2");
 
-        Employee emp1 = new Employee("Mario", "C", "333");
-        Employee emp2 = new Employee("Dora", "Explorer", "444");
+        Employee emp1 = new Employee("Mario3", "C", "333");
+        //Employee emp2 = new Employee("Dora", "Explorer", "444");
  
         emp1.setDepartment(department);
-        emp2.setDepartment(department);*/
+        //emp2.setDepartment(department);
         
 		//session.save(department); 
         
-        /*session.save(emp1);
-        session.save(emp2);*/
+        session.save(emp1);*/
+        //session.save(emp2);
         
+		Department department = new Department();
+        department.setDepartmentId(139);
+        department.setDepartmentName("Research");
+		
+		Employee emp1 = new Employee("Mario3", "C", "333");
+		//emp1.setEmployeeId(46);
+		emp1.setDepartment(department);
+		
+		Meeting meeting = new Meeting();
+		meeting.setMeetingDate(new Date(new java.util.Date().getTime()));
+		meeting.setSubject("Test Meeting");
+		Meeting meeting2 = new Meeting();
+		meeting2.setMeetingDate(new Date(new java.util.Date().getTime()));
+		meeting2.setSubject("Test Meeting");
+		emp1.getMeetings().add(meeting2);
+		
+		session.save(emp1);
+		
 		/*List<Message> messages = session.createCriteria(Message.class).list();
 		System.out.println("\nMessages Size : " + messages.size());
 	    for (Message message : messages) {
@@ -112,11 +135,11 @@ public class HibernateStandalone {
 		session.save(employee2);
 		*/
 		
-		Employee emp = (Employee) session.get(Employee.class, 29L);
+		/*Employee emp = (Employee) session.get(Employee.class, 29L);
 		
 		System.out.println("employee name: " + emp.getFirstName() + " - " + emp.getLastName());
 		System.out.println("dept name: " + emp.getDepartment().getDepartmentName());
-		System.out.println("employee meetings: " + emp.getMeetings().size());
+		System.out.println("employee meetings: " + emp.getMeetings().size());*/
 		
 		
 		/*Employee employee = (Employee) session.get(Employee.class, 28L);
