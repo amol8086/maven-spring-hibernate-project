@@ -1,0 +1,79 @@
+Add new Employee: 	
+
+	{
+    "firstName": "Amol",
+    "lastName": "Kulkarni",
+    "dateOfBirth": "1986-11-08",
+    "phoneNumber": "321",
+    "department": {
+      "departmentId": 138,
+      "departmentName": "Research"
+    },
+    "meetings": [
+      {
+        "meetingId": 1,
+        "subject": "Weekly Status meeting",
+        "meetingDate": "2015-07-22"
+      },
+      {
+        "meetingId": 2,
+        "subject": "Quaterly Sales meeting",
+        "meetingDate": "2015-07-22"
+      }
+    ]
+  }
+
+
+Update Employee.
+	
+	{
+    "employeeId": 30,
+    "firstName": "Amol",
+    "lastName": "Kulkarni",
+    "dateOfBirth": "1986-11-08",
+    "phoneNumber": "9766",
+    "department": {
+      "departmentId": 138,
+      "departmentName": "Research",
+      "employees": [
+        
+      ]
+    },
+    "meetings": [
+      {
+        "meetingId": 5,
+        "subject": "Daily Status meeting",
+        "meetingDate": "2015-07-22",
+        "employees": [
+          
+        ]
+      },
+      {
+        "meetingId": 6,
+        "subject": "Weekly Sales meeting",
+        "meetingDate": "2015-07-22",
+        "employees": [
+          
+        ]
+      }
+    ]
+  }
+	
+	
+	{
+    "firstName": "Kedar",
+    "lastName": "Kanade",
+    "dateOfBirth": "1987-12-08",
+    "phoneNumber": "321",
+    "department": {
+      "departmentId": 138,
+      "departmentName": "Research"
+    },
+    "meetings": [
+      {
+				"meetingId" : 5,
+        "subject": "Weekly Status meeting",
+        "meetingDate": "2015-07-22"
+      }
+    ]
+  }

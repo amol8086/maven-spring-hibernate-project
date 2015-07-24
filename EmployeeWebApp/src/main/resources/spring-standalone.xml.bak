@@ -1,0 +1,69 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd 
+ 		http://www.springframework.org/schema/tx 
+ 		http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:database.properties</value>
+		</property>
+	</bean>
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+		<property name="packagesToScan">
+		    <list>
+		        <value>com.gslab.sample.entity</value>
+		    </list>
+		</property>
+	</bean>
+	
+	<tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager" />
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+	
+	<bean id="messageServiceDAC" class="com.gslab.sample.dac.impl.MessageServiceDACImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="messageServiceDACMock" class="com.gslab.sample.dac.impl.MessageServiceDACMock"
+		init-method="init"/>
+	
+	<bean id="employeeServiceDAC" class="com.gslab.sample.dac.impl.EmployeeServiceDACImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="meetingServiceDAC" class="com.gslab.sample.dac.impl.MeetingServiceDACImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="employeeServiceBC" class="com.gslab.sample.business.EmployeeServiceBC">
+		<property name="employeeServiceDAC" ref="employeeServiceDAC" />
+	</bean>
+        
+</beans>

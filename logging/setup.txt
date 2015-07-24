@@ -1,0 +1,4 @@
+add vm argument for log file.
+
+
+-Dlog4j.configuration="file:/Users/gs-1014/Documents/logging/EmployeeWebApp/config/log4j.xml"
