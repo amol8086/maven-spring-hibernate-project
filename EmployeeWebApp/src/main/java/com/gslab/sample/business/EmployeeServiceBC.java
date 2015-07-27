@@ -49,6 +49,12 @@ public class EmployeeServiceBC {
 
 	public EmployeeTO findEmployee(long employeeId) {
 		Employee employee = getEmployeeServiceDAC().findEmployee(employeeId);
+		/*EmployeeTO employeeTO = new EmployeeTO();
+		try {
+			BeanUtils.copyProperties(employeeTO, employee);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			throw new SystemException("Error copying beans", e);
+		}*/
 		EmployeeTO employeeTO = createEmployeeTO(employee);
 		return employeeTO;
 	}

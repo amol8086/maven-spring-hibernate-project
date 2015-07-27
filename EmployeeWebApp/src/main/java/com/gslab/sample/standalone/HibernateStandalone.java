@@ -82,19 +82,22 @@ public class HibernateStandalone {
         department.setDepartmentId(139);
         department.setDepartmentName("Research");
 		
-		Employee emp1 = new Employee("Mario3", "C", "333");
-		//emp1.setEmployeeId(46);
+		Employee emp1 = new Employee("Mario3", "Carlos", "333");
+		emp1.setEmployeeId(52);
 		emp1.setDepartment(department);
 		
 		Meeting meeting = new Meeting();
 		meeting.setMeetingDate(new Date(new java.util.Date().getTime()));
-		meeting.setSubject("Test Meeting");
+		meeting.setMeetingId(13L);
+		meeting.setSubject("Yearly Sales meeting");
 		Meeting meeting2 = new Meeting();
+		meeting2.setMeetingId(14L);
 		meeting2.setMeetingDate(new Date(new java.util.Date().getTime()));
-		meeting2.setSubject("Test Meeting");
+		meeting2.setSubject("Yearly Marketting meeting");
+		emp1.getMeetings().add(meeting);
 		emp1.getMeetings().add(meeting2);
 		
-		session.save(emp1);
+		session.delete(emp1);
 		
 		/*List<Message> messages = session.createCriteria(Message.class).list();
 		System.out.println("\nMessages Size : " + messages.size());
